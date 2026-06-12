@@ -109,91 +109,142 @@ export default function SiteHeader({
   }, [mobileOpen]);
 
   return (
-    <header className={cn(variantClasses[variant], className)}>
-      <div className="w-full px-4 sm:px-8 lg:px-10 py-3 sm:py-4 flex items-center justify-between gap-4">
-        {/* Logo — centered in the open space left of the nav on desktop */}
-        <div className="flex items-center md:flex-1 md:justify-center">
+    <header
+      className={cn(
+        isAuthenticated
+          ? "sticky top-0 z-50 bg-[#2d6b5e] text-white"
+          : variantClasses[variant],
+        className,
+      )}
+    >
+      {isAuthenticated ? (
+        /* Authenticated header — compact sticky bar: logo left, nav center,
+           avatar right */
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
           <Link to="/" className="cursor-pointer shrink-0 flex items-center">
             <img
               src="https://hercules-cdn.com/file_UhilzQ5c5eKlEltiVpI0Nvai"
               alt="HopeBuilt"
-              className={cn(
-                "w-auto",
-                variant === "hero-green" ? "h-10 sm:h-12" : "h-8 sm:h-10",
-              )}
+              className="h-8 w-auto"
             />
           </Link>
-        </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8 shrink-0">
-          {NAV_LINKS.map((link) =>
-            link.href.startsWith("#") || link.href.includes("/#") ? (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-white/75 hover:text-white transition-colors cursor-pointer whitespace-nowrap"
-              >
-                {link.label}
-              </a>
-            ) : (
+          <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+            {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.label}
                 to={link.href}
                 end
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors cursor-pointer whitespace-nowrap ${
-                    isActive ? "text-white" : "text-white/75 hover:text-white"
+                  `text-[13px] font-medium transition-colors cursor-pointer whitespace-nowrap ${
+                    isActive ? "text-white" : "text-white/80 hover:text-white"
                   }`
                 }
               >
                 {link.label}
               </NavLink>
-            ),
-          )}
-        </nav>
+            ))}
+          </nav>
 
-        {/* Right side (desktop) */}
-        <div className="hidden md:flex items-center gap-4 shrink-0 min-h-9">
-          {showAuthPlaceholder ? (
-            <div className="w-9 h-9 rounded-full bg-white/15 animate-pulse" />
-          ) : isAuthenticated ? (
+          <div className="hidden md:flex items-center shrink-0">
             <SiteHeaderAvatarMenu tone="light" />
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="text-sm font-medium text-white/75 hover:text-white transition-colors cursor-pointer whitespace-nowrap"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/start-campaign"
-                className="inline-flex items-center gap-1.5 bg-[#fff597] hover:bg-[#ddd47d] text-[#2d6b5e] font-semibold text-sm px-4 py-2 rounded-full transition-colors cursor-pointer whitespace-nowrap"
-              >
-                Launch a Story
-              </Link>
-            </>
-          )}
-        </div>
+          </div>
 
-        {/* Mobile right side */}
-        <div className="md:hidden flex items-center gap-2 min-h-9">
-          {showAuthPlaceholder ? (
-            <div className="w-9 h-9 rounded-full bg-white/15 animate-pulse" />
-          ) : isAuthenticated ? (
+          {/* Mobile right side */}
+          <div className="md:hidden flex items-center gap-2 min-h-9">
             <SiteHeaderAvatarMenu tone="light" />
-          ) : null}
-          <button
-            type="button"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-            className="w-9 h-9 flex items-center justify-center text-white cursor-pointer"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+              className="w-9 h-9 flex items-center justify-center text-white cursor-pointer"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="w-full px-4 sm:px-8 lg:px-24 xl:px-40 py-3 sm:py-4 flex items-center justify-between gap-4">
+          {/* Logo — centered in the open space left of the nav on desktop */}
+          <div className="flex items-center md:flex-1 md:justify-center">
+            <Link to="/" className="cursor-pointer shrink-0 flex items-center">
+              <img
+                src="https://hercules-cdn.com/file_UhilzQ5c5eKlEltiVpI0Nvai"
+                alt="HopeBuilt"
+                className={cn(
+                  "w-auto",
+                  variant === "hero-green" ? "h-10 sm:h-12" : "h-8 sm:h-10",
+                )}
+              />
+            </Link>
+          </div>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 shrink-0">
+            {NAV_LINKS.map((link) =>
+              link.href.startsWith("#") || link.href.includes("/#") ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-medium text-white/75 hover:text-white transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={link.label}
+                  to={link.href}
+                  end
+                  className={({ isActive }) =>
+                    `text-sm font-medium transition-colors cursor-pointer whitespace-nowrap ${
+                      isActive ? "text-white" : "text-white/75 hover:text-white"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ),
+            )}
+          </nav>
+
+          {/* Right side (desktop) */}
+          <div className="hidden md:flex items-center gap-4 shrink-0 min-h-9">
+            {showAuthPlaceholder ? (
+              <div className="w-9 h-9 rounded-full bg-white/15 animate-pulse" />
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="text-sm font-medium text-white/75 hover:text-white transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/start-campaign"
+                  className="inline-flex items-center gap-1.5 bg-[#fff597] hover:bg-[#ddd47d] text-[#2d6b5e] font-semibold text-sm px-4 py-2 rounded-full transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  Launch a Story
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* Mobile right side */}
+          <div className="md:hidden flex items-center gap-2 min-h-9">
+            {showAuthPlaceholder ? (
+              <div className="w-9 h-9 rounded-full bg-white/15 animate-pulse" />
+            ) : null}
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+              className="w-9 h-9 flex items-center justify-center text-white cursor-pointer"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Mobile slide-in */}
       <div

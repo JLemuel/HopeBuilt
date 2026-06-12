@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  TwitterIcon,
+} from "@/components/social-icons.tsx";
 
 const PLATFORM_LINKS = [
   { label: "Campaigns", href: "/campaigns" },
@@ -21,11 +27,15 @@ const LEGAL_LINKS = [
   { label: "Cookie Policy", href: "/cookie-policy" },
 ];
 
-const SOCIAL_LINKS: Array<{ label: string; href: string | null }> = [
-  { label: "X", href: null },
-  { label: "FB", href: null },
-  { label: "IG", href: null },
-  { label: "LI", href: null },
+const SOCIAL_LINKS: Array<{
+  label: string;
+  href: string | null;
+  icon: React.ComponentType<React.ComponentProps<"svg">>;
+}> = [
+  { label: "X", href: null, icon: TwitterIcon },
+  { label: "Facebook", href: null, icon: FacebookIcon },
+  { label: "Instagram", href: null, icon: InstagramIcon },
+  { label: "LinkedIn", href: null, icon: LinkedinIcon },
 ];
 
 function isInternal(href: string): boolean {
@@ -59,17 +69,17 @@ function SocialIcons({ size }: { size: "sm" | "md" }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`HopeBuilt on ${s.label}`}
-            className={`${dim} rounded-lg bg-black/5 hover:bg-black/10 flex items-center justify-center text-[10px] font-bold text-black/50 hover:text-black transition-colors cursor-pointer`}
+            className={`${dim} rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer`}
           >
-            {s.label}
+            <s.icon className="w-4 h-4" />
           </a>
         ) : (
           <span
             key={s.label}
             aria-hidden="true"
-            className={`${dim} rounded-lg bg-black/5 flex items-center justify-center text-[10px] font-bold text-black/30 select-none`}
+            className={`${dim} rounded-lg bg-none flex items-center justify-center text-white/40 select-none`}
           >
-            {s.label}
+            <s.icon className="w-4 h-4" />
           </span>
         ),
       )}
@@ -81,7 +91,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white text-black border-t border-black/10">
+    <footer className="bg-[#2d6b5e] text-white ">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 pt-12 sm:pt-14 pb-8 sm:pb-8">
 
         {/* Mobile: brand full-width, links in 3 cols */}
@@ -89,7 +99,7 @@ export default function Footer() {
           {/* Brand row */}
           <div className="mb-7 sm:mb-0 sm:hidden">
             <Link to="/" className="inline-block mb-3 cursor-pointer">
-              <img src="https://hercules-cdn.com/file_csC9Rpxc7FkA4y5jvBL1n3gp" alt="HopeBuilt" className="h-6" />
+              <img src="https://hercules-cdn.com/file_UhilzQ5c5eKlEltiVpI0Nvai" alt="HopeBuilt" className="h-6" />
             </Link>
             <p className="text-[12px] text-black/40 leading-relaxed mb-4 max-w-[240px]">
               Empowering communities through transparent giving.
@@ -105,7 +115,7 @@ export default function Footer() {
               { title: "Legal", links: LEGAL_LINKS },
             ].map((col) => (
               <div key={col.title}>
-                <h4 className="text-[9px] font-bold text-black/30 uppercase tracking-[0.15em] mb-3">
+                <h4 className="text-[9px] font-bold text-white uppercase tracking-[0.15em] mb-3">
                   {col.title}
                 </h4>
                 <ul className="space-y-2">
@@ -113,7 +123,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <FooterLink
                         href={link.href}
-                        className="text-[12px] text-black/50 hover:text-[#2d6b5e] transition-colors cursor-pointer leading-tight block"
+                        className="text-[12px] text-white/50 hover:text-[#2d6b5e] transition-colors cursor-pointer leading-tight block"
                       >
                         {link.label}
                       </FooterLink>
@@ -128,9 +138,9 @@ export default function Footer() {
           <div className="hidden sm:grid sm:grid-cols-4 gap-8">
             <div>
               <Link to="/" className="inline-block mb-4 cursor-pointer">
-                <img src="https://hercules-cdn.com/file_csC9Rpxc7FkA4y5jvBL1n3gp" alt="HopeBuilt" className="h-7" />
+                <img src="https://hercules-cdn.com/file_UhilzQ5c5eKlEltiVpI0Nvai" alt="HopeBuilt" className="h-7" />
               </Link>
-              <p className="text-[13px] text-black/40 leading-relaxed mb-5 max-w-[200px]">
+              <p className="text-[13px] text-white/50 leading-relaxed mb-5 max-w-[200px]">
                 Empowering communities through transparent giving.
               </p>
               <SocialIcons size="md" />
@@ -142,7 +152,7 @@ export default function Footer() {
               { title: "Legal", links: LEGAL_LINKS },
             ].map((col) => (
               <div key={col.title}>
-                <h4 className="text-[10px] font-bold text-black/30 uppercase tracking-[0.15em] mb-4">
+                <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.15em] mb-4">
                   {col.title}
                 </h4>
                 <ul className="space-y-2.5">
@@ -150,7 +160,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <FooterLink
                         href={link.href}
-                        className="text-[13px] text-black/50 hover:text-[#2d6b5e] transition-colors cursor-pointer"
+                        className="text-[13px] text-white/50 hover:text-[#2d6b5e] transition-colors cursor-pointer"
                       >
                         {link.label}
                       </FooterLink>
@@ -163,12 +173,12 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-black/10 mb-4 sm:mb-6" />
+        <div className="h-px bg-white/10 mb-4 sm:mb-6" />
 
         {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-2 text-[10px] sm:text-[11px] text-black/25">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-2 text-[10px] sm:text-[11px] text-white/25">
           <p>&copy; {currentYear} Hope Built. All rights reserved.</p>
-          <p>built with <span className="text-[#2d6b5e]">&#9829;</span> for a better world</p>
+          <p>built with <span className="text-white/70">&#9829;</span> for a better world</p>
         </div>
       </div>
     </footer>
