@@ -110,21 +110,23 @@ export default function SiteHeader({
 
   return (
     <header className={cn(variantClasses[variant], className)}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 py-3 sm:py-4 flex items-center justify-between gap-4">
-        {/* Logo */}
-        <Link to="/" className="cursor-pointer shrink-0">
-          <img
-            src="https://hercules-cdn.com/file_UhilzQ5c5eKlEltiVpI0Nvai"
-            alt="HopeBuilt"
-            className={cn(
-              "w-auto",
-              variant === "hero-green" ? "h-10 sm:h-12" : "h-8 sm:h-10",
-            )}
-          />
-        </Link>
+      <div className="w-full px-4 sm:px-8 lg:px-10 py-3 sm:py-4 flex items-center justify-between gap-4">
+        {/* Logo — centered in the open space left of the nav on desktop */}
+        <div className="flex items-center md:flex-1 md:justify-center">
+          <Link to="/" className="cursor-pointer shrink-0 flex items-center">
+            <img
+              src="https://hercules-cdn.com/file_UhilzQ5c5eKlEltiVpI0Nvai"
+              alt="HopeBuilt"
+              className={cn(
+                "w-auto",
+                variant === "hero-green" ? "h-10 sm:h-12" : "h-8 sm:h-10",
+              )}
+            />
+          </Link>
+        </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-7 flex-1 justify-end">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 shrink-0">
           {NAV_LINKS.map((link) =>
             link.href.startsWith("#") || link.href.includes("/#") ? (
               <a
@@ -152,7 +154,7 @@ export default function SiteHeader({
         </nav>
 
         {/* Right side (desktop) */}
-        <div className="hidden md:flex items-center gap-3 shrink-0 min-h-9">
+        <div className="hidden md:flex items-center gap-4 shrink-0 min-h-9">
           {showAuthPlaceholder ? (
             <div className="w-9 h-9 rounded-full bg-white/15 animate-pulse" />
           ) : isAuthenticated ? (

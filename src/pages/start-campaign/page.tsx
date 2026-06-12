@@ -221,16 +221,16 @@ export default function StartCampaignPage() {
           <img
             src="https://hercules-cdn.com/file_UhilzQ5c5eKlEltiVpI0Nvai"
             alt="HopeBuilt"
-            className="h-7"
+            className="h-12 xl:h-14"
           />
         </Link>
 
         {/* Heading */}
         <div className="relative z-10">
-          <h1 className="text-4xl xl:text-5xl font-bold text-white leading-tight tracking-tight whitespace-pre-line">
+          <h1 className="text-6xl xl:text-7xl font-bold text-white leading-[1.05] tracking-tight whitespace-pre-line">
             {panel.heading}
           </h1>
-          <p className="text-white/90 text-sm mt-5 leading-relaxed whitespace-pre-line">
+          <p className="text-white/90 text-lg xl:text-xl mt-7 leading-relaxed whitespace-pre-line max-w-xl">
             {panel.description}
           </p>
         </div>
@@ -245,7 +245,7 @@ export default function StartCampaignPage() {
       </div>
 
       {/* Right panel — form */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col bg-white">
         {/* Mobile logo */}
         <div className="lg:hidden px-5 py-4 border-b border-[#cfcfcf]">
           <Link to="/" className="cursor-pointer">
