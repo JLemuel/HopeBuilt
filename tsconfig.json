@@ -1,0 +1,18 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "paths": {
+      "convex/react": ["./src/mocks/convex/react.tsx"],
+      "convex/values": ["./src/mocks/convex/values.ts"],
+      "@convex-dev/auth/react": ["./src/mocks/convex/auth-react.tsx"],
+      "@stripe/react-stripe-js": ["./src/mocks/stripe/react-stripe-js.tsx"],
+      "@stripe/stripe-js": ["./src/mocks/stripe/stripe-js.ts"],
+      "@/convex/*": ["./src/mocks/convex/*"],
+      "@/*": ["./src/*"]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Transactional & authenticated routes
+Disallow: /donate
+Disallow: /thank-you
+Disallow: /login
+Disallow: /dashboard
+Disallow: /portal/
+Disallow: /start-campaign/success
+
+Sitemap: https://hopebuilt.org/sitemap.xml
