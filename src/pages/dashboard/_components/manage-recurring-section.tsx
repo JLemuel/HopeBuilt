@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card.tsx";
 import { ActionLink } from "@/components/ui/table-primitives.tsx";
 import { CampaignIcon } from "@/components/campaign-icon.tsx";
-import type { RecurringSubscription } from "@/mocks/hopebuilt.ts";
+import type { RecurringSubscription } from "@/lib/hopebuilt-types.ts";
 
 export default function ManageRecurringSection({
   heading,

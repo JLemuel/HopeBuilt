@@ -34,7 +34,7 @@ import type {
   DonorDonation,
   RecurringSubscription,
   Stat,
-} from "@/mocks/hopebuilt.ts";
+} from "@/lib/hopebuilt-types.ts";
 import SiteHeader from "@/components/site-header.tsx";
 import Footer from "@/components/footer.tsx";
 import CtaSection from "../home/_components/cta-section.tsx";

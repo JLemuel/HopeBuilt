@@ -1,5 +1,5 @@
 import { BookOpen, Droplets, Heart, Home, Sun, User } from "lucide-react";
-import type { CampaignIconKey } from "@/mocks/hopebuilt.ts";
+import type { CampaignIconKey } from "@/lib/hopebuilt-types.ts";
 import { cn } from "@/lib/utils.ts";
 
 const iconStyles: Record<CampaignIconKey, { icon: typeof Droplets; className: string }> = {

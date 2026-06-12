@@ -1,6 +1,6 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.tsx";
 import { Skeleton } from "@/components/ui/skeleton.tsx";
-import type { Stat } from "@/mocks/hopebuilt.ts";
+import type { Stat } from "@/lib/hopebuilt-types.ts";
 
 export function StatCards({ stats }: { stats: Stat[] }) {
   return (
